@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.fourwheelerstudio.Commands.CommandBuilder;
+import com.fourwheelerstudio.Commands.CommandListener;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -21,7 +22,7 @@ public class Main {
      * @throws InterruptedException
      * @throws IOException
      * @token gets the bots token
-     * 
+     * @logger initialises the logger and sets the output file in /logs/
      */
     public static void main(String[] args) throws InterruptedException, IOException {
 
@@ -43,7 +44,7 @@ public class Main {
             e.printStackTrace();  
         }  
 
-        JDA Orion = JDABuilder.createDefault(token).addEventListeners().enableIntents(GatewayIntent.MESSAGE_CONTENT).build().awaitReady();
+        JDA Orion = JDABuilder.createDefault(token).addEventListeners(new CommandListener()).enableIntents(GatewayIntent.MESSAGE_CONTENT).build().awaitReady();
         CommandBuilder.BuildCommands(Orion);
     
     }

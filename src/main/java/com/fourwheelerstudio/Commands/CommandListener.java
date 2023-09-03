@@ -1,6 +1,10 @@
 package com.fourwheelerstudio.Commands;
 
+import java.util.logging.Logger;
+
 import org.jetbrains.annotations.NotNull;
+
+import com.fourwheelerstudio.Commands.Music.join;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -13,12 +17,13 @@ public class CommandListener extends ListenerAdapter {
      * @param event the slash command event
      */
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
+        
+        Logger logger = Logger.getLogger("orion");
+        logger.info("@" + event.getGuild().getName() + " #" + event.getChannel().getName() + " - " + event.getUser().getName() + ": " + event.getCommandString());
 
-        //get time
-
-        //log command
-
-        //add command
+        if (event.getName().equalsIgnoreCase("join")) {
+            join.joinCommand(event);
+        }
 
     }
 }
