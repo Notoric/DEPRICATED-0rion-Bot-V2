@@ -35,14 +35,17 @@ public class join {
         try {
             VoiceChannel vc = member.getVoiceState().getChannel().asVoiceChannel();
             joinVC(vc);
+
             if (vc.getUserLimit() > 0) {
                 Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), "\n" + vc.getMembers().size() + "/" + vc.getUserLimit() + " users.", new Color(197, 84, 33));
                 logger.info("Successfully joined " + vc.getName() + "at the request of " + event.getUser().getName());
                 return true;
             }
+
             Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), vc.getMembers().size() + " users.", new Color(255, 85, 0));
             logger.info("Successfully joined " + vc.getName() + " at the request of " + event.getUser().getName());
             return true;
+            
         } catch(Exception e) {
             logger.warning(e.getMessage());
         }
