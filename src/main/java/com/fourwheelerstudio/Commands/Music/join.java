@@ -8,7 +8,7 @@ import com.fourwheelerstudio.Commands.Libraries.Response;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-//import net.dv8tion.jda.api.managers.AudioManager;
+import net.dv8tion.jda.api.managers.AudioManager;
 
 public class join {
     /**
@@ -26,6 +26,12 @@ public class join {
         event.deferReply().queue();
         Member member = event.getMember();
 
+        if (event.getGuild().getAudioManager().isConnected()) {
+            Response.errorResponse(event, "The bot is already in a channel.");
+            logger.info("User " + event.getUser().getName() + " tried to use /join however bot is already in a channel.");
+            return false;
+        }
+
         if (!member.getVoiceState().inAudioChannel()) {
             Response.errorResponse(event, "User is not in a Voice Channel.");
             logger.info("User " + event.getUser().getName() + " was not in a voice channel");
@@ -36,6 +42,9 @@ public class join {
             VoiceChannel vc = member.getVoiceState().getChannel().asVoiceChannel();
             joinVC(vc);
 
+            //here need to set db_guild.ActiveChannel to event.getChannel().asTextChannel();
+            //this will be used to keep future messages in the same channel
+
             if (vc.getUserLimit() > 0) {
                 Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), "\n" + vc.getMembers().size() + "/" + vc.getUserLimit() + " users.", new Color(197, 84, 33));
                 logger.info("Successfully joined " + vc.getName() + "at the request of " + event.getUser().getName());
@@ -45,7 +54,7 @@ public class join {
             Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), vc.getMembers().size() + " users.", new Color(255, 85, 0));
             logger.info("Successfully joined " + vc.getName() + " at the request of " + event.getUser().getName());
             return true;
-            
+
         } catch(Exception e) {
             logger.warning(e.getMessage());
         }
@@ -60,6 +69,7 @@ public class join {
      * @param vc the voice channel to join
      */
     public static void joinVC(VoiceChannel vc) {
-        //join voice channel
+        AudioManager am = vc.getGuild().getAudioManager();
+        am.openAudioConnection(vc);         
     }
 }

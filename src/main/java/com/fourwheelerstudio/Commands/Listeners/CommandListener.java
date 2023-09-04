@@ -1,10 +1,11 @@
-package com.fourwheelerstudio.Commands;
+package com.fourwheelerstudio.Commands.Listeners;
 
 import java.util.logging.Logger;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.fourwheelerstudio.Commands.Music.join;
+import com.fourwheelerstudio.Commands.Music.leave;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -23,6 +24,9 @@ public class CommandListener extends ListenerAdapter {
 
         if (event.getName().equalsIgnoreCase("join")) {
             join.joinCommand(event);
+        }
+        if (event.getName().equalsIgnoreCase("leave")) {
+            leave.leaveCommand(event);
         }
 
     }
