@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import com.fourwheelerstudio.Commands.CommandBuilder;
 import com.fourwheelerstudio.Commands.CommandListener;
+import com.fourwheelerstudio.Commands.DisconnectListener;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -33,6 +34,9 @@ public class Main {
         FileHandler fh;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm.ss");
 
+        /*
+         * Tries to create log file in log folder
+         */
         try {
             fh = new FileHandler("logs" + System.getProperty("file.separator") + dtf.format(LocalDateTime.now()) + ".log");
             logger.addHandler(fh);
@@ -44,8 +48,11 @@ public class Main {
             e.printStackTrace();  
         }  
 
-        JDA Orion = JDABuilder.createDefault(token).addEventListeners(new CommandListener()).enableIntents(GatewayIntent.MESSAGE_CONTENT).build().awaitReady();
+        JDA Orion = JDABuilder.createDefault(token)
+            .addEventListeners(new CommandListener(), new DisconnectListener())
+            .enableIntents(GatewayIntent.MESSAGE_CONTENT)
+            .build().awaitReady();
+
         CommandBuilder.BuildCommands(Orion);
-    
     }
 }
