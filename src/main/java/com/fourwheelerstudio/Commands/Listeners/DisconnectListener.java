@@ -42,7 +42,7 @@ public class DisconnectListener extends ListenerAdapter {
                         }
                         System.out.println(log.getTimeCreated());
                         logger.info("@" + event.getGuild().getName() + ": Forceful Disconnection Detected!");
-                        //Response.Disconnected(event);
+                        Response.Disconnected(event);
                     }
                 }
             });

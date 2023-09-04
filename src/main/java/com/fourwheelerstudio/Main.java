@@ -7,9 +7,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import com.fourwheelerstudio.Commands.CommandBuilder;
-import com.fourwheelerstudio.Commands.CommandListener;
-import com.fourwheelerstudio.Commands.DisconnectListener;
+import com.fourwheelerstudio.Commands.Listeners.CommandBuilder;
+import com.fourwheelerstudio.Commands.Listeners.CommandListener;
+import com.fourwheelerstudio.Commands.Listeners.DisconnectListener;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -35,7 +35,7 @@ public class Main {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm.ss");
 
         /*
-         * Tries to create log file in log folder
+         * Tries to create .log file in logs folder
          */
         try {
             fh = new FileHandler("logs" + System.getProperty("file.separator") + dtf.format(LocalDateTime.now()) + ".log");
