@@ -73,7 +73,7 @@ public class Response {
 
         eb.setColor(new Color(255, 85, 0));
         eb.setTitle("Goodbye.");
-        eb.setDescription("I have been kicked from  🔊**" + event.getOldValue().getName() + "**");
+        eb.setDescription("I have been destroyed and have left  🔊 **" + event.getOldValue().getName() + "**");
 //                       \/ this bit here is the problem \/
         event.getGuild().getDefaultChannel().asTextChannel().sendMessageEmbeds(eb.build()).queue(); // need to implement channel logic (db)
     }
@@ -90,7 +90,7 @@ public class Response {
 
         eb.setColor(new Color(255, 85, 0));
         eb.setTitle("Active channel moved.");
-        eb.setDescription("I have been moved from  🔊**" + event.getChannelLeft().getName() + "** to 🔊**" + event.getChannelJoined().getName() + "**");
+        eb.setDescription("I have been moved from  🔊 **" + event.getChannelLeft().getName() + "** to 🔊 **" + event.getChannelJoined().getName() + "**");
 //                       \/ this bit here is the problem \/
         event.getGuild().getDefaultChannel().asTextChannel().sendMessageEmbeds(eb.build()).queue(); // need to implement channel logic (db)      
     }

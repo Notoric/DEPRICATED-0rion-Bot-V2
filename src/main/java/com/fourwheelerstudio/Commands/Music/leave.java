@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import com.fourwheelerstudio.Commands.Libraries.Response;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 
 public class leave {
     /**
@@ -27,11 +28,12 @@ public class leave {
             logger.info("@" + event.getGuild().getName() + " The bot could not disconnect as it was not in a channel.");
             return false;
         }
-
+        
         try {
+            VoiceChannel vc = event.getGuild().getAudioManager().getConnectedChannel().asVoiceChannel();
             event.getGuild().getAudioManager().closeAudioConnection();
-            Response.genericResponse(event, "Goodbye.", "Disconnecting from  **🔊 " + event.getGuild().getAudioManager().getConnectedChannel().getName() + "**", new Color(255, 85, 0));
-            logger.info("@" + event.getGuild().getName() + " Bot has disconnected from " + event.getGuild().getAudioManager().getConnectedChannel().getName());
+            Response.genericResponse(event, "Leaving...", "Disconnecting from  **🔊 " + vc.getName() + "**", new Color(255, 85, 0));
+            logger.info("@" + event.getGuild().getName() + " Bot has disconnected from " + vc.getName());
             return true;
         } catch(Exception e) {
             logger.warning(e.getMessage());

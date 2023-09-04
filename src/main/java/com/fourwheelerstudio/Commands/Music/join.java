@@ -42,6 +42,9 @@ public class join {
             VoiceChannel vc = member.getVoiceState().getChannel().asVoiceChannel();
             joinVC(vc);
 
+            //here need to set db_guild.ActiveChannel to event.getChannel().asTextChannel();
+            //this will be used to keep future messages in the same channel
+
             if (vc.getUserLimit() > 0) {
                 Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), "\n" + vc.getMembers().size() + "/" + vc.getUserLimit() + " users.", new Color(197, 84, 33));
                 logger.info("Successfully joined " + vc.getName() + "at the request of " + event.getUser().getName());
