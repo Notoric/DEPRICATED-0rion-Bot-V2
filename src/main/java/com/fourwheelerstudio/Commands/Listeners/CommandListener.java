@@ -25,7 +25,8 @@ public class CommandListener extends ListenerAdapter {
         if (event.getName().equalsIgnoreCase("join")) {
             join.joinCommand(event);
         }
-        if (event.getName().equalsIgnoreCase("leave")) {
+        if (event.getName().equalsIgnoreCase("leave") || event.getName().equalsIgnoreCase("stop") || event.getName().equalsIgnoreCase("destroy")) {
+
             leave.leaveCommand(event);
         }
 

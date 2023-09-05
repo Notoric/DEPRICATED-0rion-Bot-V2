@@ -22,6 +22,12 @@ public class CommandBuilder {
 
             gld.upsertCommand("leave", "leaves the voice channel").queue();
             logger.info("Added command /leave.");
+
+            gld.upsertCommand("destroy", "leaves the voice channel").queue();
+            logger.info("Added command /destroy.");
+
+            gld.upsertCommand("stop", "leaves the voice channel").queue();
+            logger.info("Added command /stop.");
         }
     }
 }

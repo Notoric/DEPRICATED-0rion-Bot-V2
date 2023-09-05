@@ -57,6 +57,7 @@ public class join {
 
         } catch(Exception e) {
             logger.warning(e.getMessage());
+            logger.warning(e.getStackTrace().toString());
         }
 
         Response.errorResponse(event, "An unknown error occurred, make sure the bot has permissions to join the channel.");
