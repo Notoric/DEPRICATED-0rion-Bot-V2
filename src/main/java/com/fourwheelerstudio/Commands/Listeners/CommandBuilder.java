@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 
 public class CommandBuilder {
     /**
@@ -28,6 +29,16 @@ public class CommandBuilder {
 
             gld.upsertCommand("stop", "leaves the voice channel").queue();
             logger.info("Added command /stop.");
+
+            gld.upsertCommand("play", "add a song to the queue")
+                .addOption(OptionType.STRING, "song", "The song you want to play, either a search query or a URL", true)
+                .addOption(OptionType.STRING, "platform", "The platform to search, NOT REQUIRED if you provide a URL", false).queue();
+            logger.info("Added command /play.");
+
+            gld.upsertCommand("queue", "add a song to the queue")
+                .addOption(OptionType.STRING, "song", "The song you want to play, either a search query or a URL", true)
+                .addOption(OptionType.STRING, "platform", "The platform to search, NOT REQUIRED if you provide a URL", false).queue();
+            logger.info("Added command /queue.");
         }
     }
 }
