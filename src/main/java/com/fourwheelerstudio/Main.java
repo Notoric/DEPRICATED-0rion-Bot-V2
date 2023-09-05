@@ -32,13 +32,14 @@ public class Main {
 
         final Logger logger = Logger.getLogger("orion");
         FileHandler fh;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm.ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        DateTimeFormatter dtf_specific = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
         /*
          * Tries to create .log file in logs folder
          */
         try {
-            fh = new FileHandler("logs" + System.getProperty("file.separator") + dtf.format(LocalDateTime.now()) + ".log");
+            fh = new FileHandler("logs" + System.getProperty("file.separator") + dtf.format(LocalDateTime.now()) + ".log", true);
             logger.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();  
             fh.setFormatter(formatter); 
@@ -46,7 +47,9 @@ public class Main {
             e.printStackTrace();  
         } catch (IOException e) {  
             e.printStackTrace();  
-        }  
+        }
+
+        logger.info("\n\n============= NEW SESSION ============= \nNew log starting at " + dtf_specific.format(LocalDateTime.now()) + "\n");
 
         JDA Orion = JDABuilder.createDefault(token)
             .addEventListeners(new CommandListener(), new DisconnectListener())
@@ -54,5 +57,6 @@ public class Main {
             .build().awaitReady();
 
         CommandBuilder.BuildCommands(Orion);
+
     }
 }
