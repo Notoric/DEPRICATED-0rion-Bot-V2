@@ -41,6 +41,7 @@ public class CommandBuilder {
             logger.info("Added command /queue.");
 
             gld.upsertCommand("website", "you can find our website here");
+            logger.info("Added command /website.");
         }
     }
 }
