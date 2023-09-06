@@ -25,6 +25,24 @@ public class Response {
         event.getHook().sendMessageEmbeds(eb.build()).queue();
     }
     /**
+     * A message response with an image to the left of a title
+     * @param event the event to respond to
+     * @param imageURL the icon at the left of the title
+     * @param title the large text at the top
+     * @param body the smaller text underneath
+     * @param colour the colour of the left margin
+     */
+    public static void genericResponseImage(SlashCommandInteractionEvent event, String imageURL, String title, String body, Color colour) {
+
+        EmbedBuilder eb = new EmbedBuilder();
+
+        eb.setColor(colour);
+        eb.setAuthor(title, null, imageURL);
+        eb.setDescription(body);
+
+        event.getHook().sendMessageEmbeds(eb.build()).queue();
+    }
+    /**
      * A message response where there is a small line of text,
      * then a bold larger line of text, then another small line of text.
      * @param event the event to respond to
@@ -55,7 +73,7 @@ public class Response {
         EmbedBuilder eb = new EmbedBuilder();
 
         eb.setColor(Color.red);
-        eb.setTitle("❌ Error");
+        eb.setAuthor("Error", null, "https://www.lifepng.com/wp-content/uploads/2020/12/Letter-X-Roundlet-png-hd.png");
         eb.setDescription(error);
 
         event.getHook().sendMessageEmbeds(eb.build()).queue();
