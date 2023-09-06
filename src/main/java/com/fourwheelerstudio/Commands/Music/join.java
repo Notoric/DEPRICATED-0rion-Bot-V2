@@ -46,7 +46,7 @@ public class join {
             //this will be used to keep future messages in the same channel
 
             if (vc.getUserLimit() > 0) {
-                Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), "\n" + vc.getMembers().size() + "/" + vc.getUserLimit() + " users.", new Color(197, 84, 33));
+                Response.genericResponseA(event, "Joining...", "🔊 " + vc.getName(), "\n" + vc.getMembers().size() + "/" + vc.getUserLimit() + " users.", new Color(255, 85, 0));
                 logger.info("Successfully joined " + vc.getName() + "at the request of " + event.getUser().getName());
                 return true;
             }
