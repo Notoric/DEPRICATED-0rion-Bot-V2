@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.fourwheelerstudio.Commands.Chat.website;
 import com.fourwheelerstudio.Commands.Music.join;
 import com.fourwheelerstudio.Commands.Music.leave;
 
@@ -28,6 +29,10 @@ public class CommandListener extends ListenerAdapter {
         if (event.getName().equalsIgnoreCase("leave")) {
             leave.leaveCommand(event);
         }
+        if (event.getName().equalsIgnoreCase("website")) {
+            website.websiteCommand(event);
+        }
+
 
     }
 }

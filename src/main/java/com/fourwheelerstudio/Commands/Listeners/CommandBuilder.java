@@ -22,6 +22,9 @@ public class CommandBuilder {
 
             gld.upsertCommand("leave", "leaves the voice channel").queue();
             logger.info("Added command /leave.");
+
+            gld.upsertCommand("website","links you to our website").queue();
+            logger.info("Added command /website.");
         }
     }
 }
