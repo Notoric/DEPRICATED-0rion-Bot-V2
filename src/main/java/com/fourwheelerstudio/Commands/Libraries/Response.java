@@ -73,7 +73,7 @@ public class Response {
         EmbedBuilder eb = new EmbedBuilder();
 
         eb.setColor(Color.red);
-        eb.setTitle("❌ Error");
+        eb.setAuthor("Error", null, "https://www.lifepng.com/wp-content/uploads/2020/12/Letter-X-Roundlet-png-hd.png");
         eb.setDescription(error);
 
         event.getHook().sendMessageEmbeds(eb.build()).queue();
