@@ -39,6 +39,8 @@ public class CommandBuilder {
                 .addOption(OptionType.STRING, "song", "The song you want to play, either a search query or a URL", true)
                 .addOption(OptionType.STRING, "platform", "The platform to search, NOT REQUIRED if you provide a URL", false).queue();
             logger.info("Added command /queue.");
+
+            gld.upsertCommand("website", "you can find our website here");
         }
     }
 }
